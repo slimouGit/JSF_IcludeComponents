@@ -3,15 +3,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:t="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>NavigationSandbox</title>
-</h:head>
-<h:body>
-	<f:view>
-		<p:outputLabel value="#{dashboardBean.greeting}" />
-	</f:view>
-</h:body>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:component="http://xmlns.jcp.org/jsf/composite/components"
+	xmlns:dummy-tag="http://dummy-project.de/facelets">
+
+<ui:composition
+	template="/WEB-INF/resources/templates/standardTemplate.xhtml">
+	<ui:define name="header">
+		<h1>
+			<p:outputLabel
+				value="Hey Template Header, I am overwriting your value" />
+		</h1>
+	</ui:define>
+	<ui:define name="content">
+		<f:view>
+			<div>
+				<h2>
+					<p:outputLabel value="#{dashboardBean.greeting}" />
+				</h2>
+			</div>
+			<div>
+				<component:greeting greeting="Hello from Composite Component" />
+			</div>
+			<div>
+				<dummy-tag:label tagLabel="Hello from Taglib" />
+			</div>
+			<div>
+				<p:outputLabel value="#{msg['greeting.MESSAGE']}" />
+			</div>
+			<div>
+				<ui:include src="/includes/greeting.xhtml">
+					<ui:param name="labelText" value="Hello" />
+					<ui:param name="valueText" value="I am an included Tag" />
+				</ui:include>
+			</div>
+			<p:panel header="Images">
+				<p:panelGrid columns="3">
+					<!-- #1 Absolute path -->
+					<p:column>
+						<h:graphicImage name="/images/duke.png" />
+					</p:column>
+					<p:column>
+						<!-- #2 Relative path -->
+						<h:graphicImage value="#{resource['images:Duke3D.png']}" />
+					</p:column>
+					<p:column>
+						<!-- #3 resource (EL) -->
+						<img src="#{resource['images:java_duke.jpg']}" />
+					</p:column>
+				</p:panelGrid>
+			</p:panel>
+		</f:view>
+	</ui:define>
+</ui:composition>
 </html>
