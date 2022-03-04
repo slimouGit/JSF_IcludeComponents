@@ -13,7 +13,7 @@
 	template="/WEB-INF/resources/templates/standardTemplate.xhtml">
 	<ui:define name="header">
 		<h1>
-			<p:outputLabel
+			<p:outputLabel class="red"
 				value="Hey Template Header, I am overwriting your value" />
 		</h1>
 	</ui:define>
@@ -40,7 +40,7 @@
 				</ui:include>
 			</div>
 			<p:panel header="Images">
-				<p:panelGrid columns="3">
+				<p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
 					<p:column>
 						<h:graphicImage name="/images/duke.png" />
 					</p:column>

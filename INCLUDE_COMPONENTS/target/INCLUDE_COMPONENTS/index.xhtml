@@ -13,7 +13,7 @@
 	template="/WEB-INF/resources/templates/standardTemplate.xhtml">
 	<ui:define name="header">
 		<h1>
-			<p:outputLabel
+			<p:outputLabel class="red"
 				value="Hey Template Header, I am overwriting your value" />
 		</h1>
 	</ui:define>
@@ -40,17 +40,14 @@
 				</ui:include>
 			</div>
 			<p:panel header="Images">
-				<p:panelGrid columns="3">
-					<!-- #1 Absolute path -->
+				<p:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center">
 					<p:column>
 						<h:graphicImage name="/images/duke.png" />
 					</p:column>
 					<p:column>
-						<!-- #2 Relative path -->
 						<h:graphicImage value="#{resource['images:Duke3D.png']}" />
 					</p:column>
 					<p:column>
-						<!-- #3 resource (EL) -->
 						<img src="#{resource['images:java_duke.jpg']}" />
 					</p:column>
 				</p:panelGrid>
